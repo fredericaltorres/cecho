@@ -31,8 +31,11 @@ cecho "#dg Hello #g World \n #dc Hello #c World \n"
     yellow y   
     white w    
 
+## .NET Framework
+cecho is written in C# using .NET 3.5.
+
 ## Copyright
 Copyright (c) 2011 Frederic Torres
 
 ## License
-You may use DynamicSugar.Net under the terms of the MIT License.
+You may use cecho and source under the terms of the MIT License.
