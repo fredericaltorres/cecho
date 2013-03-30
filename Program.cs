@@ -18,6 +18,7 @@ namespace CEcho {
         const string ColorsDemo2     = "#dg Hello #g World \n #dc Hello #c World \n ";
 
         static Dictionary<string, ConsoleColor> Colors = new Dictionary<string, ConsoleColor>() {
+
             { "db",          ConsoleColor.DarkBlue    },
             { "dg",          ConsoleColor.DarkGreen   },
             { "dc",          ConsoleColor.DarkCyan    },
@@ -50,13 +51,45 @@ namespace CEcho {
             { "white",       ConsoleColor.White       },
         };
 
-        static void cechoWriteline(string value) {
+        const string INPUT_COMMAND = "#?yesno";
+
+        static bool cechoInput(string command) {
+
+            var k   = String.Empty;
+            command = command.TrimStart();
+            if(command.StartsWith(INPUT_COMMAND)) {
+
+                command = command.Substring(INPUT_COMMAND.Length).TrimStart();
+                cechoWriteline(command, false);
+                while(true) {
+                    k = Console.ReadKey(true).KeyChar.ToString().ToUpperInvariant();
+                    Console.WriteLine(k);
+                    if(k == "Y" || k == "N")
+                        break;
+                }                
+                Environment.Exit(k == "Y" ? 1 : 0);
+            }
+            return false;
+        }
+
+        static void cechoWriteline(string value, bool crlfAtTheEnd = true) {
+
+            if(cechoInput(value))
+                return;
 
             var words = value.Split(' ');
 
-            foreach (var w in words) {
+            for(var i=0; i<words.Length; i++) {
 
-                if (w.StartsWith("#")) {
+                 var w = words[i];
+
+                 if (w.StartsWith("##")) {
+
+                    //Console.ResetColor();
+                    var color = w.Substring(2).ToLower();
+                    Console.BackgroundColor = Colors.ContainsKey(color) ? Colors[color] : ConsoleColor.Gray;
+                }
+                else if (w.StartsWith("#")) {
 
                     Console.ResetColor();
                     var color = w.Substring(1).ToLower();
@@ -67,16 +100,17 @@ namespace CEcho {
                     Console.WriteLine("");
                 }
                 else {
-                    Console.Write(w + " ");
+                    Console.Write(w + (i<words.Length-1 ? " " : ""));
                 }
             }
-            Console.WriteLine("");
+            if(crlfAtTheEnd)
+                Console.WriteLine("");
             Console.ResetColor();
         }
 
         static void Main(string[] args) {
 
-            if (args.Length == 0) {
+            if(args.Length == 0) {
 
                 Console.WriteLine("cecho - Colored Echo Command");
                 Console.WriteLine("Syntax:");
@@ -91,10 +125,10 @@ namespace CEcho {
             }
             else
             {
-                foreach (var a in args)
+                foreach(var a in args)
                     cechoWriteline(a);
 
-                if (System.Environment.CommandLine.Contains("-pause"))
+                if(System.Environment.CommandLine.Contains("-pause"))
                     Console.ReadLine();
             }
         }

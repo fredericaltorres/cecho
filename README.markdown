@@ -4,13 +4,29 @@
 cecho, a colorized echo for batch file.
 cecho is a command line tool to print lines with colors from a batch file.
 
+![alt sample](.\README.jpg "ReadMeImage")
+
 ## Syntax
+The character # followed by the color name or color short name,
+set the foreground color.
 
 ### With color names
 cecho "#darkgreen Hello #green World \n #darkcyan Hello #cyan World \n"
 
 ### with short color names
 cecho "#dg Hello #g World \n #dc Hello #c World \n"
+
+### Background and foreground color
+The character ## followed by the color name or color short name,
+set the background color. Always set the foreground color and then
+the background could.
+
+cecho "#c ##dc Hello World"
+
+### Yes No user input
+cecho allow also to ask Yes/No question with colors
+
+    cecho "#?yesno #dc do you like #c cecho #dc (Y)es (N)o ? \n"
 
 ### List of colors
 
