@@ -27,6 +27,9 @@ cecho "#c ##dc Hello World"
 cecho allow also to ask Yes/No question with colors
 
     cecho "#?yesno #dc do you like #c cecho #dc (Y)es (N)o ? \n"
+    if ERRORLEVEL == 1 echo you said yes & goto YES_NO_UNITTEST_END
+    echo you said no
+    :YES_NO_UNITTEST_END
 
 ### List of colors
 
