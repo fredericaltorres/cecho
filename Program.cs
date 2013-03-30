@@ -13,9 +13,11 @@ namespace CEcho {
 
     class Program {
 
-        const string ColorsDemo      = "#black black #darkblue darkblue #darkgreen darkgreen #darkcyan darkcyan #darkred darkred #darkmagenta darkmagenta #darkyellow darkyellow #gray gray #darkgray darkgray #blue blue #green green #cyan cyan #red red #magenta #magenta #yellow #yellow #white #white";
+        const string ColorsDemo      = "#black black #darkblue darkblue #darkgreen darkgreen #darkcyan darkcyan #darkred darkred #darkmagenta darkmagenta #darkyellow darkyellow #gray gray #darkgray darkgray #blue blue #green green #cyan cyan #red red #magenta magenta #yellow yellow #white white";
         const string ColorsDemoShort = "#db db #dg dg #dc dc #dred dred #dm dm #dy dy #g g #dg dg #b b #gray gray #c c #r r #m m #y y #w w";
-        const string ColorsDemo2     = "#dg Hello #g World \n #dc Hello #c World \n ";
+        const string ColorsDemo2     = "#dg Hello #g World \\n #dc Hello #c World \\n ";
+        const string ColorsDemo3     = "#c ##dc Hello World";
+
 
         static Dictionary<string, ConsoleColor> Colors = new Dictionary<string, ConsoleColor>() {
 
@@ -120,8 +122,21 @@ namespace CEcho {
                 Console.WriteLine(String.Format("   cecho \"{0}\"", ColorsDemoShort));
                 cechoWriteline(ColorsDemoShort);
                 Console.WriteLine("\n");
+
+                
+
                 Console.WriteLine(String.Format("   cecho \"{0}\"", ColorsDemo2));
                 cechoWriteline(ColorsDemo2);
+
+                Console.WriteLine(String.Format("   cecho \"{0}\"", ColorsDemo3));
+                cechoWriteline(ColorsDemo3);
+                Console.WriteLine("\n");
+
+
+                Console.WriteLine(@"   cecho ""#?yesno #dc do you like #c cecho #dc (Y)es (N)o ? \n""
+if ERRORLEVEL == 1 echo you said yes & goto YES_NO_UNITTEST_END
+echo you said no
+:YES_NO_UNITTEST_END");
             }
             else
             {
