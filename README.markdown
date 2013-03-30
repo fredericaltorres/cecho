@@ -4,7 +4,7 @@
 cecho, a colorized echo for batch file.
 cecho is a command line tool to print lines with colors from a batch file.
 
-![alt sample](.\README.jpg "ReadMeImage")
+![alt sample](https://github.com/fredericaltorres/cecho/blob/master/README.jpg "ReadMeImage")
 
 ## Syntax
 The character # followed by the color name or color short name,
@@ -51,7 +51,7 @@ cecho allow also to ask Yes/No question with colors
 cecho is written in C# using .NET 3.5.
 
 ## Copyright
-Copyright (c) 2011 Frederic Torres
+Copyright (c) 2013 Frederic Torres
 
 ## License
 You may use cecho and source under the terms of the MIT License.
